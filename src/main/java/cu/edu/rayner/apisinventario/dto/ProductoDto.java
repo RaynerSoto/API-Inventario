@@ -5,7 +5,7 @@ import org.springframework.lang.NonNull;
 
 import java.util.UUID;
 
-public abstract class ProductoDto {
+public class ProductoDto {
     @NonNull
     private Long id;
     @NonNull
