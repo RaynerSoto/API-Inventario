@@ -1,12 +1,13 @@
 package cu.edu.rayner.apisinventario.dto;
 
 import cu.edu.rayner.apisinventario.enums.Colores;
-import cu.edu.rayner.apisinventario.enums.Envase;
 import org.springframework.lang.NonNull;
 
 import java.util.UUID;
 
 public abstract class ProductoDto {
+    @NonNull
+    private Long id;
     @NonNull
     private Double tamanno;
     @NonNull
@@ -16,7 +17,7 @@ public abstract class ProductoDto {
     @NonNull
     private boolean fragile;
     @NonNull
-    private Envase envase;
+    private String envase;
     @NonNull
     private long lote;// No tenìa muy asumido que era un lote, por tanto asumì que era la cantidad
 
@@ -25,7 +26,7 @@ public abstract class ProductoDto {
     public ProductoDto() {
     }
 
-    public ProductoDto(Double tamanno, Colores colores, Double precio, boolean fragile, Envase envase, long lote,String nombre_seccion) {
+    public ProductoDto(Double tamanno, Colores colores, Double precio, boolean fragile, String envase, long lote,String nombre_seccion) {
         this.tamanno = tamanno;
         this.colores = colores;
         this.precio = precio;
@@ -35,7 +36,25 @@ public abstract class ProductoDto {
         this.nombre_seccion = nombre_seccion;
     }
 
+    public ProductoDto(@NonNull Long id, @NonNull Double tamanno, @NonNull Colores colores, @NonNull Double precio, boolean fragile, @NonNull String envase, long lote, String nombre_seccion) {
+        this.id = id;
+        this.tamanno = tamanno;
+        this.colores = colores;
+        this.precio = precio;
+        this.fragile = fragile;
+        this.envase = envase;
+        this.lote = lote;
+        this.nombre_seccion = nombre_seccion;
+    }
 
+    @NonNull
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(@NonNull Long id) {
+        this.id = id;
+    }
 
     public Double getTamanno() {
         return tamanno;
@@ -69,11 +88,11 @@ public abstract class ProductoDto {
         this.fragile = fragile;
     }
 
-    public Envase getEnvase() {
+    public String getEnvase() {
         return envase;
     }
 
-    public void setEnvase(Envase envase) {
+    public void setEnvase(String envase) {
         this.envase = envase;
     }
 

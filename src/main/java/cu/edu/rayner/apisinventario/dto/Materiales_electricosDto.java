@@ -1,15 +1,13 @@
 package cu.edu.rayner.apisinventario.dto;
 
 import cu.edu.rayner.apisinventario.enums.Colores;
-import cu.edu.rayner.apisinventario.enums.Envase;
-
 public class Materiales_electricosDto extends ProductoDto{
     private double voltage;
 
     public Materiales_electricosDto() {
     }
 
-    public Materiales_electricosDto(Double tamanno, Colores colores, Double precio, boolean fragile, Envase envase, long lote, String nombre_seccion) {
+    public Materiales_electricosDto(Double tamanno, Colores colores, Double precio, boolean fragile, String envase, long lote, String nombre_seccion) {
         super(tamanno, colores, precio, fragile, envase, lote, nombre_seccion);
     }
 
@@ -17,7 +15,7 @@ public class Materiales_electricosDto extends ProductoDto{
         this.voltage = voltage;
     }
 
-    public Materiales_electricosDto(Double tamanno, Colores colores, Double precio, boolean fragile, Envase envase, long lote, String nombre_seccion, double voltage) {
+    public Materiales_electricosDto(Double tamanno, Colores colores, Double precio, boolean fragile, String envase, long lote, String nombre_seccion, double voltage) {
         super(tamanno, colores, precio, fragile, envase, lote, nombre_seccion);
         this.voltage = voltage;
     }
