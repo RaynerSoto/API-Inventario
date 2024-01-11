@@ -27,7 +27,6 @@ public class SeccionesController {
                 return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-
     @PutMapping("/")
     private ResponseEntity<?> modificar_secciones(@RequestBody SeccionesDto seccionesDto){
         try {
@@ -52,6 +51,24 @@ public class SeccionesController {
     private ResponseEntity<?> listado_secciones(){
         try {
             return ResponseEntity.ok(seccionesService.listado_secciones());
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @GetMapping("/uuid")
+    private ResponseEntity<?> obtener_x_uuid(@RequestBody SeccionesDto seccionesDto){
+        try {
+            return ResponseEntity.ok(seccionesService.obtener_secciones_UUID(seccionesDto));
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @GetMapping("/nombre")
+    private ResponseEntity<?> obtener_x_nombre(@RequestBody SeccionesDto seccionesDto){
+        try {
+            return ResponseEntity.ok(seccionesService.obtener_secciones_nombre(seccionesDto));
         }catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }

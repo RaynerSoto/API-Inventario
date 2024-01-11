@@ -65,10 +65,26 @@ public class SeccionesServiceImpl implements SeccionesService {
     }
 
     @Override
-    public SeccionesDto obtener_secciones_UUID() throws Exception {
+    public SeccionesDto obtener_secciones_UUID(SeccionesDto sec) throws Exception {
         SeccionesDto seccionesDto = null;
         Connection con = jdbcTemplate.getDataSource().getConnection();
-        PreparedStatement preparedStatement = con.prepareStatement("Select * From secciones");
+        PreparedStatement preparedStatement = con.prepareStatement("Select * From secciones Where secciones.UUID Like ?");
+        preparedStatement.setString(1,sec.getIdentificador().toString());
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()){
+            seccionesDto = new SeccionesDto(UUID.fromString(resultSet.getString(1)),resultSet.getString(2),resultSet.getDouble(3));
+        }
+        preparedStatement.close();
+        con.close();
+        return seccionesDto;
+    }
+
+    @Override
+    public SeccionesDto obtener_secciones_nombre(SeccionesDto sec) throws Exception {
+        SeccionesDto seccionesDto = null;
+        Connection con = jdbcTemplate.getDataSource().getConnection();
+        PreparedStatement preparedStatement = con.prepareStatement("Select * From secciones where nombre Like ?");
+        preparedStatement.setString(1,sec.getNombre_seccion());
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()){
             seccionesDto = new SeccionesDto(UUID.fromString(resultSet.getString(1)),resultSet.getString(2),resultSet.getDouble(3));
